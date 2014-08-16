@@ -201,7 +201,8 @@ function displaySetup()
 
 function displayTextures()
 {
-	var tmp = "<p>You need to create the following textures. Save them in the mod's folder under the file names given.</p>";
+	var tmp = "<p>You need to create the following textures. Save them in the 'textures' folder in ";
+	tmp += "the mod's folder under the file names given.</p>";
 	tmp += "<table id=\"item_list\"><tr><th>Filename</th><th>Description</th></tr>";
 	for (var i = 0; i < project.items.length; i++) {
 		var item = project.items[i];
