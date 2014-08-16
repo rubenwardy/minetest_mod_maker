@@ -1,14 +1,4 @@
-var project = {name: "test", items: [{
-			name: "n1",
-			type: "node",
-			desc: "Node One",
-			digMode: "crumbly"
-		},{
-			name: "n2",
-			type: "node",
-			desc: "Node Two",
-			digMode: "crumbly"
-		}]};
+var project = {name: "", items: []};
 
 function displayName(fromTitle)
 {
