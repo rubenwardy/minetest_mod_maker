@@ -11,11 +11,17 @@ html, body {
 	background: white;
 	border-radius: 0 0 5px 5px;
 	padding: 0 0 10px 0;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 p {
 	margin: 0;
 	padding: 10px 2em 10px 2em;
+}
+#btn_start {
+	display: none;
+}
+#js_message {
+	color: #369;
 }
 #header {
 	margin: 0;
@@ -100,4 +106,18 @@ p {
 #buttons {
 	text-align: center;
 	margin-top: 20px;
+}
+
+#footer {
+	width: 70%;
+	max-width: 750px;
+	color: #555;
+	margin: auto;	
+}
+#footer a {
+	color: #666;
+	text-decoration: none;
+}
+#footer a:hover {
+	text-decoration: underline;
 }

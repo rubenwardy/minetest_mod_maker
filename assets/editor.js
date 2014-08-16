@@ -241,8 +241,9 @@ function displayTextures()
 }
 
 $(function() {
+	$("#js_message").hide();
+	$("#btn_start").show();
 	$("#btn_start").click(function() {
 		displayName(true);
 	});
-	displayMain();
 });
