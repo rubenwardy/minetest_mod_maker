@@ -176,7 +176,7 @@ function displaySetup()
 	tmp += "<li>Open up a text editor. The text editor must be a plain text editor. ";
 	tmp += "If you are on Windows, we recommend that you download <a href=\"http://notepad-plus-plus.org/\"";
 	tmp += " target=\"blank\">Notepad++</a>. However, WordPad is sufficient. ";
-	tmp += "You <b>can not</b> use Microsoft Word or Open Office.</li>";
+	tmp += "You <b>cannot</b> use Microsoft Word or Open Office.</li>";
 	tmp += "<li>Copy and paste the code at the bottom of this page into the text editor, ";
 	tmp += "and save as 'init.lua' in the mod's folder.</li>";
 	tmp += "<li>When you are done, click next to read about adding textures to your nodes.</li>";
