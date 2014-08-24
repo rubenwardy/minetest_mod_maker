@@ -62,9 +62,9 @@ function displayMain()
 	for (var i = 0; i < project.items.length; i++) {
 		var item = project.items[i];
 		if (item.type == "craft") {
-			tmp += "<tr><td>" + item.output +
-					" (" + item.num + ")</td><td>" + recipePrint(item.recipe) + "</td><td>";
-			tmp += "<a id=\""+i+"\" class=\"delete_btn button\">Delete</a></td></tr>";
+			tmp += "<tr><td>" + item.output + " (" + item.num + ")</td>";
+			tmp += "<td>" + recipePrint(item.recipe) + (item.shapeless?"<br /><i>Shapeless</i>": "") +"</td>";
+			tmp += "<td><a id=\""+i+"\" class=\"delete_btn button\">Delete</a></td></tr>";
 		}
 	}
 	tmp += "</table>";
@@ -186,6 +186,7 @@ function displayCraft(output)
 		tmp += "</tr>\n";
 	}
 	tmp += "</table>";
+	tmp += "<p><input type=\"checkbox\" id=\"shapeless\" name=\"shapeless\"> Shapeless</p>";
 	tmp += "<p>Output: <input type=\"text\" class=\"craft\" id=\"craft_output\" " +
 			(output?("value=\"{this}:"+output.name+"\" "):"") +
 			"/> <input id=\"craft_output_n\" type=\"number\" value=1></p>";
@@ -210,7 +211,8 @@ function displayCraft(output)
 			output: $("#craft_output").val(),
 			num: $("#craft_output_n").val(),
 			type: "craft",
-			recipe: craft
+			recipe: craft,
+			shapeless: $("#shapeless").val()
 		});
 
 		displayMain();
@@ -241,6 +243,8 @@ function generateCode()
 		} else if (item.type == "craft") {
 			res += "\nminetest.register_craft({\n";
 			res += "\toutput = \"" + item.output + "\",\n";
+			if (item.shapeless)
+				res += "\ttype = \"shapeless\",\n";
 			res += "\trecipe = {\n";
 			for (var y = 0; y < 3; y++) {
 				res += "\t\t{";
