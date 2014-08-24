@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Simple Mod Maker</title>		
-		<link rel="stylesheet" type="text/css" href="assets/style.css">		
-		<script src="assets/jquery.min.js"></script>
-		<script src="assets/editor.js"></script>
-	</head>
-	<body>
-		<div id="wrap">
-			<div id="header">
-				<h1>Simple Minetest Mod Maker</h1>
-			</div>
-			<div id="page">
-				<p>
-					The tool will allow you to create simple decorative blocks, without any programming,
-					which you can then add to Minetest as a mod.
-				</p>
-				<p>
-					Modding in Minetest is easy. If you are going to create anything more complicated
-					than a static block, then you need to learn how to program in Lua.
-					Or get someone else to do.
-					But the former is recommended.
-				</p>
-				<p>
-					Your progress will not be saved if you exit this tool.
-					You can't save or open a project file using this tool,
-					only export the final mod at the end.
-				</p>
+<head>
+	<title>Simple Mod Maker</title>		
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+	<script src="assets/jquery.min.js"></script>		
+	<script src="assets/jquery-ui.js"></script>
+	<script src="assets/editor.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1>Simple Minetest Mod Maker</h1>
+		</div>
+		<div id="page">
+			<p>
+				This tool allows non-programmers to make simple mods for minetest using an easy graphical interface.
+				Modding in Minetest is quite easy. This editor can not be used to create mobs, or to make
+				that mod in your dreams that fixes everything in Minetest. If you want to create anything
+				more than a decorative block, you need to learn how to program in Lua.
+			</p>
 
-				<p style="text-align: center;">
-					<span id="js_message">This tool requires Javascript to be enabled.</span>
-					<a id="btn_start" class="button long_button">Start</a>
-				</p>
-			</div>
+			<h2>Easy to Use</h2>
+			<p>
+				This tool gives you simple instructions on each page.
+				The tool is designed for those with little knowledge of the
+				Minetest internals, and so is newbie friendly.
+			</p>
+
+			<h2>Open Source</h2>
+			<p>
+				This project is available on
+				<a href="https://github.com/rubenwardy/minetest_mod_maker" target="blank">GitHub</a>
+				under the GPL 3.0 or later license.<br />
+				This project uses Javascript and HTML.
+			</p>
+
+			<p style="color: #bb3300;">
+				Your progress will not be saved if you exit this tool.
+				You can't save or open a project file using this tool,
+				only export the final mod at the end.
+			</p>
+
+			<p style="text-align: center;">
+				<span id="js_message">This tool requires Javascript to be enabled.</span>
+				<a id="btn_start" class="button long_button">Start</a>
+			</p>
 		</div>
-		<div id="footer">
-			Created by rubenwardy - <a href="https://github.com/rubenwardy/minetest_mod_maker" target="blank">GitHub</a>
-		</div>
-	</body>
+	</div>
+	<div id="footer">
+		Created by rubenwardy -
+		<a href="https://github.com/rubenwardy/minetest_mod_maker" target="blank">GitHub</a>
+	</div>
+</body>
 </html>
 
