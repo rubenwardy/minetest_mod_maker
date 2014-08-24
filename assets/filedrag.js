@@ -27,11 +27,21 @@ if(window.FileReader) {
 
 				reader.readAsDataURL(file);
 				addEventHandler(reader, 'loadend', function(e, file) {
-					var bin = this.result;
-					var text = atob(bin.substr(bin.indexOf(",") + 1, bin.length - bin.indexOf(",") - 1));
-					var data = jQuery.parseJSON(text);
-					project = data;
-					displayMain();
+					try {
+						var bin = this.result;
+						var text = atob(bin.substr(bin.indexOf(",") + 1, bin.length - bin.indexOf(",") - 1));
+						var data = jQuery.parseJSON(text);
+						if (!data || !data.name || data.name == "") {
+							alert("File is not of correct type, or is corrupted!");
+							return false;
+						}
+
+						project = data;
+						displayMain();
+					} catch(e) {						
+						alert("File is not of correct type, or is corrupted!");
+						return false;
+					}
 				}.bindToEventHandler(file));
 			}
 			return false;
