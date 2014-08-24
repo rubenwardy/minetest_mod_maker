@@ -195,6 +195,8 @@ function displayCraft(output)
 	}
 	tmp += "</table>";
 	tmp += "<p><input type=\"checkbox\" id=\"shapeless\" name=\"shapeless\"> Shapeless</p>";
+		/* | ";
+	tmp += "<input type=\"checkbox\" id=\"exact\" name=\"exact\" value=1> Exactly right</p>";*/
 	tmp += "<p>Output: <input type=\"text\" class=\"craft\" id=\"craft_output\" " +
 			(output?("value=\"{this}:"+output.name+"\" "):"") +
 			"/> <input id=\"craft_output_n\" type=\"number\" value=1></p>";
@@ -277,7 +279,7 @@ function generateCode()
 		res += "})\n";	
 	}
 
-	return res;
+	return res.replace("{this}", project.name);
 }
 
 function recipePrint(recipe)
