@@ -129,6 +129,12 @@ function displayNode()
 	select += selectOP("oddly_breakable_by_hand", "Breaks easily", false);	
 	tmp += makeRow("dig", "Dig Mode", select, "The dig mode of a node determines which tools work best, and how quick it is to dig.");
 
+	var select = "<select name=\"slTiles\" id=\"tileMode\">";
+	select += selectOP("single", "Same texture for all the surfaces", true);
+	select += selectOP("unique", "Unique texture for each of the surfaces", false);
+	tmp += makeRow("tiles", "Texture", select, "Choose how you want to add images to each of the surfaces");
+
+
 	/*var select = "<select name=\"slSD\" id=\"sound\">";
 	select += selectOP("none", "", true);
 	select += selectOP("custom", "use custom sounds", false);
@@ -160,12 +166,14 @@ function displayNode()
 		}
 
 		var digMode = $("#digMode").val();
+		var tileMode = $("#tileMode").val();
 	
 		project.items.push({
 			name: name,
 			type: "node",
 			desc: desc,
-			digMode: digMode
+			digMode: digMode,			
+			tileMode: tileMode
 		});
 
 		displayMain();
@@ -232,12 +240,21 @@ function generateCode()
 			res += "\nminetest.register_"+item.type+"(\""+project.name+":"+item.name+"\", {\n";
 			res += "\tdescription = \"" + item.desc + "\",\n";		
 			res += "\ttiles = {\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_top.png\",\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_bottom.png\",\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_right.png\",\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_left.png\",\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_back.png\",\n";
-			res += "\t\t\""+project.name+"_"+item.name+"_front.png\"\n";
+			if (!item.tileMode || item.tileMode == "" || item.tileMode == "unique") {
+				res += "\t\t\""+project.name+"_"+item.name+"_top.png\",\n";
+				res += "\t\t\""+project.name+"_"+item.name+"_bottom.png\",\n";
+				res += "\t\t\""+project.name+"_"+item.name+"_right.png\",\n";
+				res += "\t\t\""+project.name+"_"+item.name+"_left.png\",\n";
+				res += "\t\t\""+project.name+"_"+item.name+"_back.png\",\n";
+				res += "\t\t\""+project.name+"_"+item.name+"_front.png\"\n";
+			} else {
+				res += "\t\t\""+project.name+"_"+item.name+".png\", -- top\n";
+				res += "\t\t\""+project.name+"_"+item.name+".png\", -- bottom\n";
+				res += "\t\t\""+project.name+"_"+item.name+".png\", -- right\n";
+				res += "\t\t\""+project.name+"_"+item.name+".png\", -- left\n";
+				res += "\t\t\""+project.name+"_"+item.name+".png\", -- back\n";
+				res += "\t\t\""+project.name+"_"+item.name+".png\"  -- front\n";
+			}
 			res += "\t},\n";
 			res += "\tgroups = {" + item.digMode + " = 2}\n";
 		} else if (item.type == "craft") {
@@ -314,18 +331,27 @@ function displaySetup()
 
 function displayTextures()
 {
+	function genTile(name, desc, surface)
+	{
+		return "<tr><td>"+project.name+"_"+name+"_"+surface+".png</td><td>The "+surface+" surface of "+desc+"</td></tr>";
+	}
+
 	var tmp = "<p>You need to create the following textures. Save them in the 'textures' folder in ";
 	tmp += "the mod's folder under the file names given.</p>";
 	tmp += "<table id=\"item_list\"><tr><th>Filename</th><th>Description</th></tr>";
 	for (var i = 0; i < project.items.length; i++) {
 		var item = project.items[i];
 		if (item.type == "node") {
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_top.png</td><td>The top surface of "+item.desc+"</td></tr>";
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_bottom.png</td><td>The bottom surface of "+item.desc+"</td></tr>";
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_right.png</td><td>The right surface of "+item.desc+"</td></tr>";
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_left.png</td><td>The left surface of "+item.desc+"</td></tr>";
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_back.png</td><td>The back surface of "+item.desc+"</td></tr>";
-			tmp += "<tr><td>"+project.name+"_"+item.name+"_front.png</td><td>The front surface of "+item.desc+"</td></tr>";
+			if (!item.tileMode || item.tileMode == "" || item.tileMode == "unique") {
+				tmp += genTile(item.name, item.desc, "top");
+				tmp += genTile(item.name, item.desc, "bottom");
+				tmp += genTile(item.name, item.desc, "right");
+				tmp += genTile(item.name, item.desc, "left");
+				tmp += genTile(item.name, item.desc, "back");
+				tmp += genTile(item.name, item.desc, "front");
+			} else {
+				tmp += "<tr><td>"+project.name+"_"+item.name+".png</td><td>Use for all surfaces "+item.desc+"</td></tr>";
+			}		
 		}
 	}
 	tmp += "</table>";
