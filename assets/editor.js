@@ -40,6 +40,7 @@ function displayMain()
 	tmp += "<a id=\"btn_create_node\" class=\"button\">Create Node</a>";
 	tmp += "<a id=\"btn_create_craft\" class=\"button\">Create Craft</a>";
 	tmp += "<a id=\"btn_change_name\" class=\"button\">Change Mod Name</a>";
+	tmp += "<a id=\"btn_save\" download=\"save.json\" class=\"button\">Save</a>";
 	tmp += "<a id=\"btn_next\" class=\"button long_button\">Next</a>";
 	tmp += "</p>";
 
@@ -80,6 +81,10 @@ function displayMain()
 	});
 	$("#btn_next").click(function() {
 		displaySetup();
+	});
+	$("#btn_save").click(function() {
+		var data = $.toJSON(project);
+		window.open("data:text/json;base64,"+btoa(data));
 	});
 	$(".craft_with").click(function() {		
 		displayCraft(project.items[$(this).attr('id')]);

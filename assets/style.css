@@ -80,11 +80,12 @@ h2 {
 }
 
 .button {
+	display: inline-block;
 	text-decoration: none;
 	color: white;	
 	background: #369;
 	padding: 5px 1em 5px 1em;
-	margin: 0.5em;
+	margin: 0.25em;
 	border-radius: 2px;
 	cursor: pointer;
 }
