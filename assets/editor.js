@@ -34,7 +34,7 @@ function displayMain()
 	var tmp = "<p>On this page you can create and delete nodes to be added to the mod. ";
 	tmp += "When you are done, click next. You can come back to this page after clicking next. ";
 	tmp += "Items are things that you can move around in your inventory. They can be blocks or ";
-	tmp += "unplacable things.</p>";
+	tmp += "unplaceable things.</p>";
 
 	tmp += "<p id=\"buttons\" style=\"margin-top: 0;\">";
 	tmp += "<a id=\"btn_create_node\" class=\"button\">Create Node</a>";
